@@ -14,6 +14,7 @@ resource "null_resource" "update_config_map_aws_auth" {
   }
 
   count = "${var.manage_aws_auth ? 1 : 0}"
+  depends_on = ["aws_eks_cluster.this"]
 }
 
 data "template_file" "config_map_aws_auth" {
