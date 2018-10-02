@@ -20,7 +20,8 @@ data "template_file" "config_map_aws_auth" {
   template = "${file("${path.module}/templates/config-map-aws-auth.yaml.tpl")}"
 
   vars {
-    worker_role_arn = "${aws_iam_role.workers.arn}"
+    # worker_role_arn = "${aws_iam_role.workers.arn}"
+    worker_role_arn = "${var.worker_iam_role_arn}"
     map_users       = "${join("", data.template_file.map_users.*.rendered)}"
     map_roles       = "${join("", data.template_file.map_roles.*.rendered)}"
     map_accounts    = "${join("", data.template_file.map_accounts.*.rendered)}"

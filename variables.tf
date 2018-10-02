@@ -123,3 +123,6 @@ variable "kubeconfig_name" {
   description = "Override the default name used for items kubeconfig."
   default     = ""
 }
+
+variable "worker_iam_instance_profile_id" {}
+variable "worker_iam_role_arn" {}
