@@ -18,7 +18,7 @@ resource "null_resource" "update_config_map_aws_auth" {
 }
 
 data "aws_iam_instance_profile" "worker_passed" {
-  name = "${var.worker_iam_instance_profile_id}"
+  name = "${lookup(var.worker_groups[count.index], "worker_iam_instance_profile_id")}"
 }
 
 data "template_file" "config_map_aws_auth" {
