@@ -23,7 +23,7 @@ resource "aws_autoscaling_group" "workers" {
 
   lifecycle {
     create_before_destroy = true
-    prevent_destroy = "${var.prevent_destroy}"
+    #prevent_destroy = "${var.prevent_destroy}"
   }
 }
 
