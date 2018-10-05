@@ -16,6 +16,8 @@ resource "aws_autoscaling_group" "workers" {
     local.asg_tags)
   }"]
 
+  health_check_type = "ELB"
+
   lifecycle {
     ignore_changes = ["desired_capacity"]
   }
