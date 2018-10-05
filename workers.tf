@@ -17,12 +17,13 @@ resource "aws_autoscaling_group" "workers" {
   }"]
 
   protect_from_scale_in = true
+  force_delete = true
   health_check_type = "ELB"
   enabled_metrics = [ "GroupMinSize", "GroupMaxSize", "GroupDesiredCapacity", "GroupInServiceInstances", "GroupPendingInstances", "GroupStandbyInstances", "GroupTerminatingInstances", "GroupTotalInstances"]
 
   lifecycle {
     create_before_destroy = true
-    #prevent_destroy = true
+    prevent_destroy = "${var.prevent_destroy}"
   }
 }
 

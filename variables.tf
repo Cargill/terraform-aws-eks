@@ -126,3 +126,4 @@ variable "kubeconfig_name" {
 
 variable "worker_iam_instance_profile_id" {}
 variable "worker_iam_role_arn" {}
+variable "prevent_destroy" { default = true }
