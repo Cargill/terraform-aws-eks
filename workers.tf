@@ -17,6 +17,7 @@ resource "aws_autoscaling_group" "workers" {
   }"]
 
   health_check_type = "ELB"
+  enabled_metrics = [ "GroupMinSize", "GroupMaxSize", "GroupDesiredCapacity", "GroupInServiceInstances", "GroupPendingInstances", "GroupStandbyInstances", "GroupTerminatingInstances", "GroupTotalInstances"]
 
   lifecycle {
     ignore_changes = ["desired_capacity"]
