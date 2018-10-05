@@ -21,6 +21,7 @@ resource "aws_autoscaling_group" "workers" {
   enabled_metrics = [ "GroupMinSize", "GroupMaxSize", "GroupDesiredCapacity", "GroupInServiceInstances", "GroupPendingInstances", "GroupStandbyInstances", "GroupTerminatingInstances", "GroupTotalInstances"]
 
   lifecycle {
+    create_before_destroy = true
     ignore_changes = ["desired_capacity"]
   }
 }
