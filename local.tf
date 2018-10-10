@@ -24,7 +24,7 @@ locals {
     key_name                      = ""                              # The key name that should be used for the instances in the autoscaling group
     pre_userdata                  = ""                              # userdata to pre-append to the default userdata.
     additional_userdata           = ""                              # userdata to append to the default userdata.
-    ebs_optimized                 = true                            # sets whether to use ebs optimization on supported types.
+    ebs_optimized                 = false                           # sets whether to use ebs optimization on supported types.
     enable_monitoring             = true                            # Enables/disables detailed monitoring.
     public_ip                     = false                           # Associate a public ip address with a worker
     kubelet_extra_args            = ""                              # This string is passed directly to kubelet if set. Useful for adding labels or taints.
