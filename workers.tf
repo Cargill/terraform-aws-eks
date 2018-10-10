@@ -7,6 +7,7 @@ resource "aws_autoscaling_group" "workers" {
   vpc_zone_identifier   = ["${split(",", coalesce(lookup(var.worker_groups[count.index], "subnets", ""), local.workers_group_defaults["subnets"]))}"]
   protect_from_scale_in = "${lookup(var.worker_groups[count.index], "protect_from_scale_in", local.workers_group_defaults["protect_from_scale_in"])}"
   force_delete          = "${lookup(var.worker_groups[count.index], "force_delete", local.workers_group_defaults["force_delete"])}"
+  health_check_type     = "${lookup(var.worker_groups[count.index], "health_check_type", local.workers_group_defaults["health_check_type"])}"
   suspended_processes   = ["${compact(split(",", coalesce(lookup(var.worker_groups[count.index], "suspended_processes", ""), local.workers_group_defaults["suspended_processes"])))}"]
   count                 = "${var.worker_group_count}"
 
