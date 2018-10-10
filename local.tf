@@ -36,6 +36,7 @@ locals {
     health_check_type             = "EC2"                           # Controls how health checking is done within the ASG
     iam_role_id                   = "${local.default_iam_role_id}"  # Use the specified IAM role if set.
     suspended_processes           = ""                              # A comma delimited string of processes to to suspend. i.e. AZRebalance,HealthCheck,ReplaceUnhealthy
+    enabled_metrics               = ""                              # A list of metrics to collect. The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
   }
 
   workers_group_defaults = "${merge(local.workers_group_defaults_defaults, var.workers_group_defaults)}"
