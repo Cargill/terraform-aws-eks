@@ -32,6 +32,7 @@ locals {
     autoscaling_enabled           = false                           # Sets whether policy and matching tags will be added to allow autoscaling.
     additional_security_group_ids = ""                              # A comman delimited list of additional security group ids to include in worker launch config
     protect_from_scale_in         = false                           # Prevent AWS from scaling in, so that cluster-autoscaler is solely responsible.
+    force_delete                  = false                           # Allows deleting the autoscaling group without waiting for all instances in the pool to terminate.
     iam_role_id                   = "${local.default_iam_role_id}"  # Use the specified IAM role if set.
     suspended_processes           = ""                              # A comma delimited string of processes to to suspend. i.e. AZRebalance,HealthCheck,ReplaceUnhealthy
   }
