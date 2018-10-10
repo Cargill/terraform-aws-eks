@@ -23,8 +23,7 @@ resource "aws_autoscaling_group" "workers" {
 
   lifecycle {
     ignore_changes  = ["desired_capacity"]
-    prevent_destroy = "${lookup(var.worker_groups[count.index], "prevent_destroy", local.workers_group_defaults["[prevent_destroy]"])}"
-
+    prevent_destroy = "${lookup(var.worker_groups[count.index], "lifecycle_prevent_destroy", local.workers_group_defaults["[lifecycle_prevent_destroy]"])}"
   }
 }
 
