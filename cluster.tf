@@ -68,3 +68,14 @@ resource "aws_iam_service_linked_role" "elasticloadbalancing" {
   count            = "${var.create_elb_service_linked_role}"
   aws_service_name = "elasticloadbalancing.amazonaws.com"
 }
+
+resource "aws_security_group_rule" "cluster_https_worker_ingress" {
+  description              = "Allow pods to communicate with the EKS cluster API."
+  protocol                 = "tcp"
+  security_group_id        = "${aws_security_group.cluster.id}"
+  source_security_group_id = "${local.worker_security_group_id}"
+  from_port                = 443
+  to_port                  = 443
+  type                     = "ingress"
+  count                    = "${var.cluster_security_group_id == "" ? 1 : 0}"
+}
