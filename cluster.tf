@@ -68,3 +68,22 @@ resource "aws_iam_service_linked_role" "elasticloadbalancing" {
   count            = "${var.create_elb_service_linked_role}"
   aws_service_name = "elasticloadbalancing.amazonaws.com"
 }
+
+resource "aws_security_group" "cluster" {
+  name_prefix = "${var.cluster_name}"
+  description = "EKS cluster security group."
+  vpc_id      = "${var.vpc_id}"
+  tags        = "${merge(var.tags, map("Name", "${var.cluster_name}-eks_cluster_sg"))}"
+  count       = "${var.cluster_security_group_id == "" ? 1 : 0}"
+}
+
+resource "aws_security_group_rule" "cluster_egress_internet" {
+  description       = "Allow cluster egress access to the Internet."
+  protocol          = "-1"
+  security_group_id = "${aws_security_group.cluster.id}"
+  cidr_blocks       = ["0.0.0.0/0"]
+  from_port         = 0
+  to_port           = 0
+  type              = "egress"
+  count             = "${var.cluster_security_group_id == "" ? 1 : 0}"
+}
