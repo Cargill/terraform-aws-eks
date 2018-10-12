@@ -130,6 +130,17 @@ resource "null_resource" "tags_as_list_of_maps" {
   )}"
 }
 
+resource "aws_security_group_rule" "workers_ingress_cluster_https" {
+  description              = "Allow pods running extension API servers on port 443 to receive communication from cluster control plane."
+  protocol                 = "tcp"
+  security_group_id        = "${aws_security_group.workers.id}"
+  source_security_group_id = "${local.cluster_security_group_id}"
+  from_port                = 443
+  to_port                  = 443
+  type                     = "ingress"
+  count                    = "${var.worker_security_group_id == "" ? 1 : 0}"
+}
+
 # resource "aws_iam_role_policy_attachment" "workers_autoscaling" {
 #   policy_arn = "${aws_iam_policy.worker_autoscaling.arn}"
 #   role       = "${aws_iam_role.workers.name}"
