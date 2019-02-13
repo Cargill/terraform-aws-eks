@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "workers_assume_role_policy" {
 data "aws_ami" "eks_worker" {
   filter {
     name   = "name"
-    values = ["amazon-eks-node-*"]
+    values = ["amazon-eks-node-${var.cluster_version}-*"]
   }
 
   most_recent = true
