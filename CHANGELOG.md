@@ -15,6 +15,12 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 - A subtle but thoughtful change. (Boomshakalaka, @self 🏀)
 
+## [[v1.6.0](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v1.5.0...v1.6.0)] - 2019-02-13]
+
+### Added
+
+- add support for [`amazon-eks-node-${cluster_version}-*`](https://aws.amazon.com/blogs/opensource/improvements-eks-worker-node-provisioning/) (by @davecozz)
+
 ## [[v1.6.0](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v1.5.0...v1.6.0)] - 2018-09-04]
 
 ### Added

@@ -9,8 +9,8 @@ resource "aws_eks_cluster" "this" {
   }
 
   timeouts {
-      create = "30m"
-      delete = "30m"
+    create = "30m"
+    delete = "30m"
   }
 
   depends_on = [
