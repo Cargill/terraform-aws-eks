@@ -34,6 +34,7 @@ locals {
     protect_from_scale_in         = false                           # Prevent AWS from scaling in, so that cluster-autoscaler is solely responsible.
     iam_role_id                   = "${local.default_iam_role_id}"  # Use the specified IAM role if set.
     suspended_processes           = ""                              # A comma delimited string of processes to to suspend. i.e. AZRebalance,HealthCheck,ReplaceUnhealthy
+    health_check_type             = "EC2"                           # "EC2" or "ELB". Controls how health checking is done.
   }
 
   workers_group_defaults = "${merge(local.workers_group_defaults_defaults, var.workers_group_defaults)}"
